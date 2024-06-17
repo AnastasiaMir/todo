@@ -26,3 +26,8 @@ button.clear {
     outline: 2px solid rgb(3, 3, 112);
     border: 2px solid rgb(3, 3, 112);
 }
+.btn {
+    background-color: rgb(3, 3, 112);
+    outline: 2px solid rgb(3, 3, 112);
+    border: 2px solid rgb(3, 3, 112);
+}
