@@ -20,3 +20,9 @@ input.form-check-input {
     margin-right: 5px;
     padding-right: 5px;
 }
+button.clear {
+    margin-bottom: 10px;
+    background-color: rgb(3, 3, 112);
+    outline: 2px solid rgb(3, 3, 112);
+    border: 2px solid rgb(3, 3, 112);
+}

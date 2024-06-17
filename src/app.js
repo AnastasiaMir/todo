@@ -8,6 +8,7 @@ export default () => {
     feedback: document.querySelector('.feedback'),
     navigation: document.querySelectorAll('a.nav-link'),
     tasks: document.querySelector('ul[class="list-group"]'),
+    clearBtn: document.querySelector('button[type="button"]'),
   };
 
   const state = {
@@ -67,4 +68,9 @@ export default () => {
     watchedState.tasks = [...remainedTasks, currentTask];
     localStorage.setItem('tasks', JSON.stringify(state.tasks));
   });
+
+  elements.clearBtn.addEventListener('click', () => {
+    localStorage.clear();
+    window.location.reload();
+  })
 };
