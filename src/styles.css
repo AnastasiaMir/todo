@@ -1,0 +1,22 @@
+@import "bootstrap";
+
+.main-container {
+    background-color: rgb(204, 215, 252);
+}
+li.list-group-item {
+    background-color: #f4f6f7;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+    border: none;
+    border-radius: 2px;
+}
+
+h1 {
+    font-weight: bold;
+    color: rgb(3, 3, 112);
+}
+input.form-check-input {
+    margin-right: 5px;
+    padding-right: 5px;
+}
