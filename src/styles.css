@@ -44,3 +44,6 @@ button.clear-btn {
 p {
     margin-bottom: 0;
 }
+.nav-item {
+    cursor: pointer;
+}
