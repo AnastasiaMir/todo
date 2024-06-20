@@ -4,13 +4,13 @@ import initView from './view.js';
 export default () => {
   const elements = {
     taskInput: document.querySelector('#task-input'),
-    button: document.querySelector('button[type="submit"]'),
+    button: document.querySelector('.add-btn'),
     feedback: document.querySelector('.feedback'),
     navigation: document.querySelectorAll('a.nav-link'),
     tasks: document.querySelector('ul[class="list-group"]'),
-    clearBtn: document.querySelector('button[type="button"]'),
+    clearBtn: document.querySelector('.clear-btn'),
+    deleteBtn: document.querySelector('.delete-btn'),
   };
-
   const state = {
     selectedNavLink: 'All',
     selectedTaskId: '',
@@ -59,6 +59,11 @@ export default () => {
   elements.tasks.addEventListener('click', (e) => {
     e.preventDefault();
     watchedState.valid = null;
+    if (e.target.type === 'submit') {
+      const remainedTasks = state.tasks.filter((task) => task.id !== Number(e.target.id));
+      watchedState.tasks = remainedTasks;
+      return;
+    }
     const [currentTask] = state.tasks.filter((task) => task.id === Number(e.target.id));
     const remainedTasks = state.tasks.filter((task) => task.id !== Number(e.target.id));
     watchedState.currentTaskId = currentTask.id;
@@ -69,8 +74,9 @@ export default () => {
     localStorage.setItem('tasks', JSON.stringify(state.tasks));
   });
 
+
   elements.clearBtn.addEventListener('click', () => {
     localStorage.clear();
-    window.location.reload();
+    watchedState.tasks = [];
   })
 };

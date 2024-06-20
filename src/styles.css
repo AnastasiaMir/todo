@@ -20,14 +20,28 @@ input.form-check-input {
     margin-right: 5px;
     padding-right: 5px;
 }
-button.clear {
+button.clear-btn {
     margin-bottom: 10px;
     background-color: rgb(3, 3, 112);
     outline: 2px solid rgb(3, 3, 112);
     border: 2px solid rgb(3, 3, 112);
 }
-.btn {
+.clear-btn, .add-btn {
     background-color: rgb(3, 3, 112);
     outline: 2px solid rgb(3, 3, 112);
     border: 2px solid rgb(3, 3, 112);
+}
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.completed-task {
+    text-decoration: line-through;
+}
+
+.btn-outline-primary {
+    display: inline-block;
+    text-decoration: none;
 }

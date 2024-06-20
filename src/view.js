@@ -1,21 +1,34 @@
 import onChange from 'on-change';
 
 const renderTasks = (state, elements) => {
-  const numberOfAllTasks = Object.keys(state.tasks).length;
+  const numberOfAllTasks = state.tasks.length;
   const allNav = document.getElementById('All');
-  allNav.textContent = `All (${numberOfAllTasks})`;
-
-  const numberOfCompleted = Object.keys(state.tasks.filter((task) => task.status === 'Completed')).length;
   const completedNav = document.getElementById('Completed');
-  completedNav.textContent = `Completed (${numberOfCompleted})`;
   const activeNav = document.getElementById('Active');
-  const numberOfActive = Object.keys(state.tasks.filter((task) => task.status === 'Active')).length;
-  activeNav.textContent = `Active (${numberOfActive})`;
 
   const activeLink = document.querySelector('.active');
   if (activeLink.id !== state.selectedNavLink) {
     activeLink.classList.remove('active');
   }
+  const currentNav = document.getElementById(state.selectedNavLink);
+  currentNav.classList.add('active');
+
+  if (numberOfAllTasks === 0) {
+    elements.tasks.replaceChildren([]);
+    completedNav.textContent = `Completed (0)`;
+    allNav.textContent = `All (0)`;
+    activeNav.textContent = `Active (0)`;
+    return;
+  }
+
+  allNav.textContent = `All (${numberOfAllTasks})`;
+
+  const numberOfCompleted = Object.keys(state.tasks.filter((task) => task.status === 'Completed')).length;
+  
+  completedNav.textContent = `Completed (${numberOfCompleted})`;
+  
+  const numberOfActive = Object.keys(state.tasks.filter((task) => task.status === 'Active')).length;
+  activeNav.textContent = `Active (${numberOfActive})`;
 
   switch (state.selectedNavLink) {
     case 'All':
@@ -25,10 +38,15 @@ const renderTasks = (state, elements) => {
         const li = document.createElement('li');
         li.classList.add('list-group-item');
         if (task.status === 'Completed') {
-          li.classList.add('text-decoration-line-through');
+          li.classList.add('completed-task');
         }
         li.textContent = task.text;
         li.setAttribute('id', task.id);
+        const btn = document.createElement('button');
+        btn.classList.add('btn', 'btn-outline-primary', 'delete-btn');
+        btn.setAttribute('id', task.id);
+        btn.textContent="-";
+        li.appendChild(btn);
         elements.tasks.appendChild(li);
       });
 
@@ -42,9 +60,14 @@ const renderTasks = (state, elements) => {
         .map(([id, task]) => {
           const li = document.createElement('li');
           li.classList.add('list-group-item');
-          li.classList.add('text-decoration-line-through');
+          li.classList.add('completed-task');
           li.textContent = task.text;
           li.setAttribute('id', task.id);
+          const btn = document.createElement('button');
+          btn.classList.add('btn', 'btn-outline-primary', 'delete-btn');
+          btn.setAttribute('id', task.id);
+          btn.textContent="-";
+          li.appendChild(btn);
           elements.tasks.appendChild(li);
         });
       break;
@@ -59,6 +82,11 @@ const renderTasks = (state, elements) => {
           li.classList.add('list-group-item');
           li.textContent = task.text;
           li.setAttribute('id', task.id);
+          const btn = document.createElement('button');
+          btn.classList.add('btn', 'btn-outline-primary', 'delete-btn');
+          btn.setAttribute('id', task.id);
+          btn.textContent="-";
+          li.appendChild(btn);
           elements.tasks.appendChild(li);
         });
       break;
