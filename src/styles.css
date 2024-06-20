@@ -34,14 +34,13 @@ button.clear-btn {
 .list-group-item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 
 .completed-task {
     text-decoration: line-through;
 }
-
-.btn-outline-primary {
-    display: inline-block;
-    text-decoration: none;
+p {
+    margin-bottom: 0;
 }

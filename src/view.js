@@ -37,15 +37,17 @@ const renderTasks = (state, elements) => {
       Object.entries(state.tasks).map(([id, task]) => {
         const li = document.createElement('li');
         li.classList.add('list-group-item');
+        const p = document.createElement('p');
         if (task.status === 'Completed') {
-          li.classList.add('completed-task');
+          p.classList.add('completed-task');
         }
-        li.textContent = task.text;
-        li.setAttribute('id', task.id);
+        p.textContent = task.text;
+        p.setAttribute('id', task.id);
+        li.appendChild(p);
         const btn = document.createElement('button');
         btn.classList.add('btn', 'btn-outline-primary', 'delete-btn');
         btn.setAttribute('id', task.id);
-        btn.textContent="-";
+        btn.textContent="Delete Task";
         li.appendChild(btn);
         elements.tasks.appendChild(li);
       });
@@ -60,13 +62,15 @@ const renderTasks = (state, elements) => {
         .map(([id, task]) => {
           const li = document.createElement('li');
           li.classList.add('list-group-item');
-          li.classList.add('completed-task');
-          li.textContent = task.text;
-          li.setAttribute('id', task.id);
+          const p = document.createElement('p');
+          p.textContent = task.text;
+          p.setAttribute('id', task.id);
+          p.classList.add('completed-task');
+          li.appendChild(p);
           const btn = document.createElement('button');
           btn.classList.add('btn', 'btn-outline-primary', 'delete-btn');
           btn.setAttribute('id', task.id);
-          btn.textContent="-";
+          btn.textContent="Delete Task";
           li.appendChild(btn);
           elements.tasks.appendChild(li);
         });
@@ -80,12 +84,14 @@ const renderTasks = (state, elements) => {
         .map(([id, task]) => {
           const li = document.createElement('li');
           li.classList.add('list-group-item');
-          li.textContent = task.text;
-          li.setAttribute('id', task.id);
+          const p = document.createElement('p');
+          p.textContent = task.text;
+          p.setAttribute('id', task.id);
+          li.appendChild(p);
           const btn = document.createElement('button');
           btn.classList.add('btn', 'btn-outline-primary', 'delete-btn');
           btn.setAttribute('id', task.id);
-          btn.textContent="-";
+          btn.textContent="Delete Task";
           li.appendChild(btn);
           elements.tasks.appendChild(li);
         });
